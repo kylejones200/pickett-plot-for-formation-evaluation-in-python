@@ -8,6 +8,21 @@ import logging
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
+import yaml
+
+
+from pathlib import Path
+
+
+def load_config(config_path=None):
+    """Load configuration from YAML file."""
+    if config_path is None:
+        config_path = Path(__file__).parent / 'config.yaml'
+    if not config_path.exists():
+        return {}
+    with open(config_path) as _f:
+        import yaml as _yaml
+        return _yaml.safe_load(_f) or {}
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format='%(message)s')
@@ -35,7 +50,7 @@ def pickett_isoline(rt_range, sw, rw=0.03, m=2.0, n=2.0, a=1.0):
     return np.clip(phi, 0.001, 0.5)
 
 # Generate synthetic well log data with realistic patterns
-np.random.seed(42)
+np.random.seed(config.get('data', {}).get('seed', 42))
 n_samples = 250
 
 # Create three zones with different characteristics
@@ -68,7 +83,7 @@ rt_all = np.clip(rt_all, 0.1, 1000)
 phi_all = np.clip(phi_all, 0.01, 0.35)
 
 # Create figure
-fig, ax = plt.subplots(figsize=(8, 8))
+fig, ax = plt.subplots(figsize=tuple(config.get('output', {}).get('figsize', [8, 8])))
 
 # Plot isolines
 rt_range = np.logspace(-1, 3, 200)
