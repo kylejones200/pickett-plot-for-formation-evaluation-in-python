@@ -40,7 +40,7 @@ def pickett_isoline(rt_range, sw, rw=0.03, m=2.0, n=2.0, a=1.0):
     return np.clip(phi, 0.001, 0.5)
 
 # Generate synthetic well log data with realistic patterns
-np.random.seed(config.get('data', {}).get('seed', 42))
+np.random.seed(42)
 n_samples = 250
 
 # Create three zones with different characteristics
