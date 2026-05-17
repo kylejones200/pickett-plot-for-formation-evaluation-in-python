@@ -1,0 +1,21 @@
+[project]
+name = "pickett-plot-for-formation-evaluation-in-python"
+version = "0.1.0"
+description = "Companion code for Medium article: pickett plot for formation evaluation in python"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib>=3.10.9",
+    "numpy>=2.4.4",
+    "pyyaml>=6.0.3",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
