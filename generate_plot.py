@@ -83,7 +83,6 @@ sw_lines = [1.0, 0.8, 0.6, 0.4, 0.2]
 
 for sw in sw_lines:
     phi_line = pickett_isoline(rt_range, sw)
-
     if sw == 1.0:
         linestyle = "-"
         linewidth = 1.2
@@ -111,9 +110,7 @@ for sw in sw_lines:
     )
 
 # Plot data points
-ax.scatter(
-    rt_all, phi_all, color="gray", s=12, alpha=0.5, edgecolors="none", label="Log data"
-)
+ax.scatter(rt_all, phi_all, color="gray", s=12, alpha=0.5, edgecolors="none", label="Log data")
 
 # Set log scales
 ax.set_xscale("log")
